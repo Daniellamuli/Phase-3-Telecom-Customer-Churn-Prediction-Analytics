@@ -1,21 +1,25 @@
-# SyriaTel Customer Churn Prediction
+<div align="center">
+  <h1><strong>📱 SyriaTel Customer Churn Prediction</strong></h1>
+  <p><em>Optimizing Revenue Retention through Advanced Predictive Analytics</em></p>
+</div>
+
+<hr />
+<p align="center">
+  <img src="Images/Syriatel-churn-prediction-strategy-Banner.jpg" 
+       alt="SyriaTel Strategy Banner" 
+       style="width: 48%; height: 250px; object-fit: cover; object-position: top; border-radius: 8px;">
+  <img src="Images/SyriaTel Project Banner.jpg" 
+       alt="Abstract Data Visualization" 
+       style="width: 48%; height: 250px; object-fit: cover; border-radius: 8px;">
+</p>
 
 ![churn](https://img.shields.io/badge/Predict-Churn-red)
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![scikit--learn](https://img.shields.io/badge/scikit--learn-Latest-orange)
-<table align="center">
-  <tr>
-    <td>
-      <img src="images/SyriaTel Project Banner.jpg" width="400" alt="SyriaTel Project Banner">
-    </td>
-    <td>
-      <img src="images/Syriatel-churn-prediction-strategy-Banner.jpg" width="400" alt="Churn Prediction Strategy">
-    </td>
-  </tr>
-</table>
+
 
 ## Overview
-SyriaTel, a telecommunications company, faces a common but costly challenge: **customer churn**. Losing customers not only reduces revenue but also increases acquisition costs to replace them. This project aims to build a **binary classification model** that predicts whether a customer will stop doing business with SyriaTel in the near future. By identifying at-risk customers early, the company can take proactive measures—such as targeted offers or improved service—to retain them.
+SyriaTel, a telecommunications company, faces a common but costly challenge: **customer churn** (the loss of clients to competitors). Losing customers not only reduces revenue but also increases acquisition costs to replace them; a significant financial drain in the telecommunications industry. This project utilizes machine learning to identify predictable patterns in customer behavior for SyriaTel. It aims to build a **binary classification model** that predicts whether a customer will stop doing business with SyriaTel in the near future. By identifying and predicting which customers are likely to leave "soon," we enable the business to take proactive retention measures such as targeted offers or improved service to retain them, ultimately protecting the bottom line. 
 
 The analysis follows the full data science lifecycle: from business understanding and data exploration to model building, evaluation, and actionable recommendations. The final deliverable is a predictive model that helps SyriaTel reduce churn and maximize customer lifetime value.
 
