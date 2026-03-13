@@ -27,33 +27,58 @@ The analysis follows the full data science lifecycle: from business understandin
 
 ## Business and Data Understanding
 
+### The Stakeholder
+The primary stakeholder is the SyriaTel Retention Department.
+
 ### Business Problem
+It costs significantly more to acquire a new customer than to retain an existing one. Every customer who churns represents lost monthly revenue and a wasted acquisition cost.
 SyriaTel’s leadership wants to understand **why customers leave** and **who is likely to leave next**. They need a tool that flags high-risk customers so that the retention team can intervene. The key business questions are:
-- What patterns distinguish churners from loyal customers?
-- Which features (e.g., usage, service plans, customer service calls) are most predictive of churn?
-- How can we use these insights to design effective retention strategies?
+- What behavioral patterns and early indicators signal that a customer is likely to churn?
+
+- Which customer features (e.g., usage levels, service plans, customer service interactions) are the strongest predictors of churn?
+
+- How accurately can we predict customer churn before it occurs?
+
+- How can churn insights be translated into effective and cost-efficient customer retention strategies?
 
 ### Dataset
 The dataset comes from SyriaTel’s customer records and contains **3333 observations** with **21 features**. Each row represents a unique customer, and the target variable is `churn` (True/False). The features include:
-- **Demographics**: `state`, `area code`
-- **Account information**: `account length`, `international plan`, `voice mail plan`, `number vmail messages`
-- **Usage patterns**: call minutes, calls, and charges for different times of day (day, evening, night, international)
-- **Customer service**: `customer service calls`
-- **Unique identifier**: `phone number` (dropped during modeling)
 
-Initial exploration revealed a **class imbalance**: only about 14.5% of customers churned. This imbalance is realistic—churn is a rare event—and influences how we evaluate models (accuracy alone is misleading).
+- **Demographics:** `state`, `area code`  
+  → Provide geographic information about the customer’s location and regional classification.
+
+- **Account Information:** `account length`, `international plan`, `voice mail plan`, `number vmail messages`  
+  → Describe customer subscription details, tenure with the telecom provider, and access to additional service plans.
+
+- **Usage Metrics:** Day, evening, night, and international minutes, number of calls, and corresponding charges  
+  → Capture customer calling behavior and service usage patterns across different times of day.
+
+- **Service Interaction:** `customer service calls`  
+  → Represents the number of times a customer contacted support, which may indicate dissatisfaction or service-related issues.
+
+- **Plan Details:** Presence of International or Voice Mail plans  
+  → Highlight whether customers are subscribed to optional service features that may influence usage behavior and churn risk.
+
+- **Unique Identifier:** `phone number` (dropped during modeling)  
+  → Serves as a unique customer identifier but was removed since it does not contribute predictive value.
+
+- **Target:** `churn (True/False)`  
+  → Indicates whether the customer discontinued the telecom service.
+
+Initial exploration revealed a **class imbalance**: only about 14.5% of customers churned. This imbalance is realistic—churn is a rare event—and influences our choice of evaluation metrics (prioritizing Recall over Accuracy). (Accuracy alone is misleading).
 
 ---
 
 ## Data Preparation
 Before modeling, we performed several preprocessing steps to ensure data quality and prevent leakage:
 
-1. **Removed irrelevant columns**: `phone number` (unique identifier) was dropped.
-2. **Encoded categorical variables**:
+1. **Feature Engineering**: Created `total_charge` and `avg_call_cost` to capture the overall financial weight of a customer.
+2. **Removed irrelevant columns**: `phone number` (unique identifier) was dropped.
+3. **Encoded categorical variables**:
    - Binary columns (`international plan`, `voice mail plan`) converted to 0/1.
    - `state` and `area code` were one‑hot encoded to preserve any geographic signal.
-3. **Train/test split**: Data was split **before scaling** to avoid data leakage. We used a 80/20 split with stratification to maintain class proportions.
-4. **Feature scaling**: Numeric features (minutes, calls, charges, etc.) were standardized using `StandardScaler` for models sensitive to feature scales (e.g., logistic regression). Tree‑based models used unscaled data.
+4. **Train/test split**: Data was split **before scaling** to avoid data leakage. We used a 80/20 split with stratification to maintain class proportions.
+5. **Feature scaling**: Numeric features (minutes, calls, charges, etc.) were standardized using `StandardScaler` for models sensitive to feature scales (e.g., logistic regression) to perform optimally. Tree‑based models used unscaled data.
 
 All transformations were fit **only on the training set** and then applied to the test set, ensuring realistic performance estimates.
 
@@ -62,12 +87,19 @@ All transformations were fit **only on the training set** and then applied to th
 ## Exploratory Data Analysis (EDA)
 We dove into the data to uncover patterns associated with churn. Here are some key findings:
 
-- **Customer service calls** are strongly linked to churn: churners make, on average, **twice as many calls** to customer service as non‑churners.
-- **International plan** subscribers churn at a higher rate (~42%) compared to those without (~11%).
-- **Total day minutes** and **total day charge** are higher for churners, suggesting heavy users might be more price‑sensitive or dissatisfied.
-- **Voice mail plan** customers tend to be more loyal (churn rate ~9% vs. ~16% for those without).
-- `account length` shows little difference between churners and stayers—tenure alone isn’t a strong predictor.
+## Exploratory Data Analysis (EDA)
 
+We explored the dataset to understand how different customer characteristics and behaviors relate to churn. Key insights include:
+
+- **Customer service calls:** Customers who churn tend to contact customer support much more frequently. On average, churners make **about twice as many service calls** as non-churners, suggesting that repeated issues or dissatisfaction may increase the likelihood of leaving.
+
+- **International plan:** Customers subscribed to the International Plan churn at a significantly higher rate (**~42%**) compared to those without the plan (**~11%**). This may indicate higher expectations, pricing concerns, or service challenges among international users.
+
+- **Total day usage:** Churners generally record **higher total day minutes and charges**, indicating that heavier daytime users may be more sensitive to pricing or service quality.
+
+- **Voice mail plan:** Customers with a Voice Mail Plan appear to be more loyal, with a lower churn rate (**~9%**) compared to customers without the plan (**~16%**). This feature may increase perceived service value or engagement.
+
+- **Account length:** There is **little difference in tenure** between customers who churn and those who stay. This suggests that how long a customer has been with the provider is not a strong indicator of churn on its own.
 Correlation analysis confirmed that minutes and charges are perfectly correlated (as expected), so we could drop one set to reduce redundancy, but we kept them for interpretability.
 
 ---
