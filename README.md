@@ -393,15 +393,121 @@ Despite these limitations, the model provides a strong foundation for **data-dri
 
 ---
 
-## \## Repository Structure ├── data/ │ └── bigml\_59c28831336c6604c800002a.csv # raw data ├── notebooks/ │ └── syriatel\_churn\_analysis.ipynb # Jupyter Notebook with full analysis ├── images/ # plots and figures ├── README.md # this file ├── LICENSE └── .gitignore
+## Repository Structure
 
-##
+## 
+
+    ├── data/
+    │   └── bigml_59c28831336c6604c800002a.csv     # Raw churn dataset
+    │
+    ├── notebooks/
+    │   └── syriatel_churn_analysis.ipynb           # Full end-to-end analysis notebook
+    │
+    ├── images/                                     # Saved plots used in README
+    │   ├── churn_distribution.png
+    │   ├── voting_classifier_confusion.png
+    │   └── feature_importance.png
+    │
+    ├── presentation/
+    │   └── Syriatel_Churn_Presentation.pdf         # Final stakeholder presentation
+    │
+    ├── requirements.txt                             # Python dependencies
+    ├── README.md
+    ├── LICENSE
+    └── .gitignore
+    
+
+* * *
+
+## How to Reproduce This Analysis
+
+## 
+
+To run this project locally, follow the steps below:
+
+### 1️⃣ Clone the Repository
+
+## 
+
+    git clone https://github.com/your-username/syriatel-churn-prediction.git
+    cd syriatel-churn-prediction
+    
+
+* * *
+
+### 2️⃣ Create and Activate a Virtual Environment
+
+## 
+
+    python -m venv venv
+    source venv/bin/activate        # macOS / Linux
+    venv\Scripts\activate           # Windows
+    
+
+* * *
+
+### 3️⃣ Install Dependencies
+
+## 
+
+    pip install -r requirements.txt
+    
+
+* * *
+
+### 4️⃣ Launch Jupyter Notebook
+
+## 
+
+    jupyter notebook
+    
+
+Then navigate to:
+
+    notebooks/syriatel_churn_analysis.ipynb
+    
+
+Run all cells sequentially to reproduce the full analysis, modeling workflow, and visualizations.
+
+* * *
+
+## Requirements
+
+## 
+
+Key libraries used in this project include:
+
+*   pandas
+    
+*   numpy
+    
+*   matplotlib
+    
+*   seaborn
+    
+*   scikit-learn
+    
+*   imbalanced-learn
+    
+
+All dependencies and versions are listed in `requirements.txt`.
+
+* * *
+
+## Presentation
+
+## 
+
+A stakeholder-focused summary of findings and business recommendations is available in:
+
+    presentation/Syriatel_Churn_Presentation.pdf
+    
+
+This deck highlights the key churn drivers, model performance, and strategic retention actions.
 
 ---
 
 ## Conclusion
 This project demonstrates how machine learning can help a telecom company predict and mitigate customer churn. By identifying at‑risk customers early, SyriaTel can take targeted actions to improve retention, ultimately saving revenue and strengthening customer relationships. The final Random Forest model balances interpretability and performance, offering a practical tool for the business.
-
-For a detailed walkthrough, check the [Jupyter Notebook](notebooks/syriatel_churn_analysis.ipynb).
 
 ---
