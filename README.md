@@ -71,10 +71,11 @@ The dataset comes from SyriaTel’s customer records and contains **3333 observa
 ### Exploratory Data Analysis Insights
 
 Initial exploration revealed a **class imbalance**: only about 14.5% of customers churned. This imbalance is realistic—churn is a rare event—and influences our choice of evaluation metrics (prioritizing Recall over Accuracy). (Accuracy alone is misleading).
-<div align="center">
-  <img src="Images/churn_distribution.png" alt="Churn Distribution" width="600"/>
-  <p><em>Figure 1: Distribution of Customer Churn - Clear class imbalance is visible</em></p>
-</div>
+<p align="center">
+  <img src="./Images/churn%20distribution.png" alt="Churn Distribution" width="600">
+  <br>
+  <i>Figure 1: Distribution of Customer Churn - Clear class imbalance is visible</i>
+</p>
 
 We explored the dataset to understand how different customer characteristics and behaviors relate to churn. Key insights include:
 
@@ -91,10 +92,11 @@ We explored the dataset to understand how different customer characteristics and
 ### Multicollinearity Note
 Correlation analysis confirmed that minutes and charges are perfectly correlated (as expected) so we could drop one set to reduce redundancy, but we kept them for interpretability.
 
-<div align="center">
-  <img src="Images/correlation_heatmap.png" alt="Correlation Heatmap" width="600"/>
-  <p><em>Figure 2: Correlation Matrix - Note perfect correlation between minutes and charges</em></p>
-</div>
+<p align="center">
+  <img src="./Images/correlation%20heatmap.png" alt="Correlation Heatmap" width="600">
+  <br>
+  <i>Figure 2: Correlation Matrix - Note perfect correlation between minutes and charges</i>
+</p>
 
 ---
 
@@ -224,7 +226,7 @@ Understanding which factors most strongly influence churn allows SyriaTel to mov
 The feature importance analysis from the final ensemble model highlights several key behavioral and service-related drivers of customer churn.
 
 <div align="center">
-  <img src="Images/feature_importance.png" alt="Feature Importance" width="700"/>
+  <img src="Images/feature%20importance.png" alt="Feature Importance" width="700"/>
   <p><em>Figure 4: Most influential features contributing to churn predictions.</em></p>
 </div>
 
